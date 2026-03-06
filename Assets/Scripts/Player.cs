@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D RB;
 
     public float Jump;
+    public float Speed = 5f;
+    
 
     public List<GameObject> Grounds;
 
@@ -22,9 +24,21 @@ public class Player : MonoBehaviour
     {
         Vector2 vel = RB.linearVelocity;
 
-        if (Input.GetKeyDown(KeyCode.Space) && CanJump())
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            vel.y = Jump;
+            transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Translate(Vector3.left * Speed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(Vector3.right * Speed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(Vector3.down * Speed * Time.deltaTime);
         }
 
         RB.linearVelocity = vel;
